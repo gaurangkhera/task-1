@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plus, Search } from 'lucide-react';
+import { ChevronLeft, ChevronRight, NotepadText, Plus, Search } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -26,12 +26,12 @@ export default function page() {
         <div className="text-sm text-muted-foreground">
           Search according to symptoms & add to the recommendations
         </div>
-        <div className="flex items-center space-x-2 my-2">
+        <div className="flex items-center space-x-2 my-2 bg-gray-100 p-2">
           <Select defaultValue="Kent">
             <SelectTrigger className="w-[180px]">
               <SelectValue>
                 <div className="flex items-center">
-                  <span className="mr-2">Repertory:</span>
+                  <span className="mr-2 flex text-gray-500 font-medium"><NotepadText className='w-4 h-4 mt-0.5 items-center justify-center text-primary mr-1' /> Repertory:</span>
                   Kent
                 </div>
               </SelectValue>
@@ -49,19 +49,39 @@ export default function page() {
             />
           </div>
         </div>
+        <div className="flex flex-row justify-between">
         <div className="text-sm text-muted-foreground">
           High number of results. Maybe try narrowing your search using '-', like 'head, -back*'.
         </div>
+        <div className="text-sm text-muted-foreground">
+          <span className="font-bold">7144</span> Total Results
+        </div>
+        </div>
+        <hr />
         <div className="flex justify-between text-sm my-2">
           <div className="space-x-2">
-            <Button variant="link" className="text-primary p-0">Search</Button>
-            <Button variant="link" className="text-muted-foreground p-0">Selected (0)</Button>
+            <span className="p-2 border-b-2 border-primary">
+            <Button variant="link" className="text-primary font-bold">Search</Button>
+            </span>
+            <Button variant="ghost" className="text-muted-foreground p-0">Selected (0)</Button>
           </div>
-          <div>7144 Total Results</div>
+        </div>
+        <div className="flex justify-between">
+        <div className='text-sm'>
+          <span className="font-semibold">Showing 1-10</span> of 7144 Matches
+        </div>
+        <div className="flex items-center space-x-2">
+            <Button variant="secondary" size="sm" disabled><ChevronLeft className='mr-1.5 w-4 h-4'/>Previous</Button>
+            <Button variant="outline" size="sm">1</Button>
+            <Button variant="outline" size="sm">2</Button>
+            <span>...</span>
+            <Button variant="outline" size="sm">72</Button>
+            <Button variant="secondary" size="sm">Next <ChevronRight className='ml-1.5 w-4 h-4' /></Button>
+          </div>
         </div>
         <ScrollArea className="flex-grow">
           <Table>
-            <TableHeader>
+            <TableHeader className='bg-gray-100'>
               <TableRow>
                 <TableHead>Rubric</TableHead>
                 <TableHead>Remedies</TableHead>
@@ -83,22 +103,9 @@ export default function page() {
             </TableBody>
           </Table>
         </ScrollArea>
-        <div className="flex items-center justify-between mt-2">
-          <div className="text-sm text-muted-foreground">
-            Showing 1-10 of 7144 Matches
-          </div>
-          <div className="flex items-center space-x-2">
-            <Button variant="outline" size="sm" disabled>Previous</Button>
-            <Button variant="outline" size="sm">1</Button>
-            <Button variant="outline" size="sm">2</Button>
-            <span>...</span>
-            <Button variant="outline" size="sm">72</Button>
-            <Button variant="outline" size="sm">Next</Button>
-          </div>
-        </div>
         <div className="flex justify-end space-x-2 mt-4">
           <Button variant="outline">Cancel</Button>
-          <Button>Add Medicine</Button>
+          <Button disabled>Add Medicine</Button>
         </div>
       </DialogContent>
     </Dialog>
